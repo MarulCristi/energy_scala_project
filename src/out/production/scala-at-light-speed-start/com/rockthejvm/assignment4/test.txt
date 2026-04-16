@@ -1,0 +1,5 @@
+This is a test file.
+It contains several lines.
+Each line has some words.
+Some words are repeated.
+Others appear only once.
