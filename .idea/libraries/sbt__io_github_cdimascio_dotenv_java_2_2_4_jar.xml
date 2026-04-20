@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: io.github.cdimascio:dotenv-java:2.2.4:jar" external-system-id="SBT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/null/Coursier/cache/v1/https/repo1.maven.org/maven2/io/github/cdimascio/dotenv-java/2.2.4/dotenv-java-2.2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/null/Coursier/cache/v1/https/repo1.maven.org/maven2/io/github/cdimascio/dotenv-java/2.2.4/dotenv-java-2.2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
