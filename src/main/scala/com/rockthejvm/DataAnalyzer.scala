@@ -30,24 +30,25 @@ object DataAnalyzer {
     }
   }
 
-  // Mode: the value that appears most often. 
-  // Returning a List[Double] because there could be multiple modes (a tie).
-  def mode(records: List[EnergyRecord]): List[Double] = {
+  // Mode: Grouped by 100s and formatted directly into the requested string format.
+  def mode(records: List[EnergyRecord]): String = {
     val values = getValues(records)
-    if (values.isEmpty) List.empty[Double]
+    if (values.isEmpty) "None"
     else {
-      // Group by the value itself to get maps of Map[Double, List[Double]]
-      // Something like this:
-      // Map(
-      //  2.0 -> List(2.0, 2.0, 2.0),
-      //  3.0 -> List(3.0, 3.0),
-      //  5.0 -> List(5.0)
-      //)
-      val grouped = values.groupBy(identity)
+      // Group by the hundreds (e.g., 5341.2 becomes 5300)
+      val grouped = values.groupBy(v => (v / 100.0).toInt * 100)
+
       // Find the maximum size of the grouped lists
       val maxCount = grouped.values.map(_.size).max
-      // Filter out only the values that have the max count, and return them
-      grouped.filter { case (_, list) => list.size == maxCount }.keys.toList
+
+      // Filter out only the values that have the max count
+      val topGroups = grouped.filter { case (_, list) => list.size == maxCount }
+
+      // Format: "5300 3 found: (5341.2, 5327.57, 5324.74)"
+      topGroups.map { case (bucket, list) =>
+        val examples = list.mkString(", ")
+        s"$bucket ${list.size} found: ($examples)"
+      }.mkString(" | ")
     }
   }
 
