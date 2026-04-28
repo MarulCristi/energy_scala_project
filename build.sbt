@@ -11,3 +11,4 @@ libraryDependencies ++= Seq(
   "com.softwaremill.sttp.client3" %% "core" % "3.9.0", // HTTP client
   "com.lihaoyi" %% "upickle" % "3.1.3" // used for JSON parsing
 )
+

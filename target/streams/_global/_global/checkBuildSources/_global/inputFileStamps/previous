@@ -1,1 +1,1 @@
-["sbt.Task[scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]",{"hashes":[["C:\\Scala\\scala-at-light-speed-start\\build.sbt","69d1606614760ced4b92b91e24147c587806af84"]],"lastModifiedTimes":[]}]
+["sbt.Task[scala.collection.Seq[scala.Tuple2[java.nio.file.Path, sbt.nio.FileStamp]]]",{"hashes":[["/Users/andrei/IdeaProjects/energy_scala_project/build.sbt","69d1606614760ced4b92b91e24147c587806af84"]],"lastModifiedTimes":[]}]

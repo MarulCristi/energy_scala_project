@@ -1,3 +1,3 @@
-[debug] "not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/C:/Users/andre/Downloads/scala-at-light-speed-start/project/"), "scala-at-light-speed-start-build")...
-[debug] Done updating ProjectRef(uri("file:/C:/Users/andre/Downloads/scala-at-light-speed-start/project/"), "scala-at-light-speed-start-build")
+[debug] not up to date. inChanged = true, force = false
+[debug] Updating ProjectRef(uri("file:/Users/andrei/IdeaProjects/energy_scala_project/project/"), "energy_scala_project-build")...
+[debug] Done updating ProjectRef(uri("file:/Users/andrei/IdeaProjects/energy_scala_project/project/"), "energy_scala_project-build")
