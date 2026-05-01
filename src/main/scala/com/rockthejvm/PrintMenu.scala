@@ -2,9 +2,11 @@ package com.rockthejvm
 
 import io.github.cdimascio.dotenv.Dotenv
 import java.time.format.DateTimeFormatter
-import java.time.{LocalDate, LocalDateTime, ZoneId}
+import java.time.{LocalDate, LocalDateTime, ZoneId, ZonedDateTime}
 import scala.annotation.tailrec
 import scala.util.Try
+
+// No AI used
 
 object PrintMenu {
   def main(args: Array[String]): Unit = {
@@ -174,8 +176,8 @@ object PrintMenu {
               // Parse the input strings into LocalDateTime objects
               startLocal <- Try(LocalDateTime.parse(startInput, format))
               endLocal <- Try(LocalDateTime.parse(endInput, format))
-              startZoned = startLocal.atZone(ZoneId.of("UTC"))
-              endZoned = endLocal.atZone(ZoneId.of("UTC"))
+              startZoned = startLocal.atZone(ZoneId.of("Europe/Helsinki"))
+              endZoned = endLocal.atZone(ZoneId.of("Europe/Helsinki"))
             } yield (startZoned, endZoned)
 
             tryFilter match {
@@ -236,7 +238,7 @@ object PrintMenu {
         List.empty[EnergyRecord]
 
       case scala.util.Success(date) =>
-        // Convert to ISO-8601 UTC formats for Fingrid
+        // Convert to ISO-8601 Europe/Helsinki formats for Fingrid
         val startStr = s"${date}T00:00:00Z"
         val endStr = s"${date.plusDays(1)}T00:00:00Z"
 
@@ -289,11 +291,20 @@ object PrintMenu {
           List.empty[EnergyRecord]
         } else {
           println(s"Successfully fetched ${dataArray.size} records.")
+
           dataArray.map { item =>
+            val finnishZone = ZoneId.of("Europe/Helsinki")
+
+            val parsedStart = ZonedDateTime.parse(item("startTime").str)
+            val parsedEnd = ZonedDateTime.parse(item("endTime").str)
+
+            val startFinnish = parsedStart.withZoneSameInstant(finnishZone).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+            val endFinnish = parsedEnd.withZoneSameInstant(finnishZone).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
+
             EnergyRecord(
               datasetId = item("datasetId").num.toInt,
-              startTime = item("startTime").str,
-              endTime = item("endTime").str,
+              startTime = startFinnish,
+              endTime = endFinnish,
               value = item("value").num
             )
           }
