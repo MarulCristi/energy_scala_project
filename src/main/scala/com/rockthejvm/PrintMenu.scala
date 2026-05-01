@@ -162,6 +162,7 @@ object PrintMenu {
     }
   }
 
+
   // Handles the specific assignment requirements for Error Handling
   def fetchFromApiWithDateHandling(apiKey: String): List[EnergyRecord] = {
     println("\nSelect Energy Type to Fetch:")
@@ -186,6 +187,12 @@ object PrintMenu {
 
     // Functional Try blocks replacing try-catch logic
     Try(LocalDate.parse(dateInput, formatter)) match {
+
+      // Guard against future dates (API doesnt catch this sometimes)
+      case scala.util.Success(date) if date.isAfter(LocalDate.now()) =>
+        println("\nInvalid date. You cannot fetch data for future dates.")
+        List.empty[EnergyRecord]
+
       case scala.util.Success(date) =>
         // Convert to ISO-8601 UTC formats for Fingrid
         val startStr = s"${date}T00:00:00Z"
@@ -197,7 +204,7 @@ object PrintMenu {
       case scala.util.Failure(_) =>
         // Satisfies Requirement Scenario 1
         println("\nInvalid date format. Please enter the date in the format 'DD/MM/YYYY'.")
-        println("For example, enter '12/04/2024' for April 12, 2024.")
+        println("For example, enter '12/04/2026' for April 12, 2026.")
         List.empty[EnergyRecord]
     }
   }
