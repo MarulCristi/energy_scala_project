@@ -81,7 +81,7 @@ object PrintMenu {
         println("1. Sort by value (Ascending)")
         println("2. Sort by value (Descending)")
         println("3. Sort by time (Old to New)")
-        println("4. Sort by Time (New to Old)")
+        println("4. Sort by time (New to Old)")
         println("5. Filter by Energy Source (Wind=75, Solar=248, Hydro=191)")
         println("6. Search for exact value")
         println("7. Filter by Time Range")
