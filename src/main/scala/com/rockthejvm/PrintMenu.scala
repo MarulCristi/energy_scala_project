@@ -55,15 +55,57 @@ object PrintMenu {
         // Combine loaded records with what we currently have
         menuLoop(apiKey, currentData ++ loadedRecords)
 
+
+
       case "4" =>
         if (currentData.isEmpty) println("No data available to analyze.")
         else {
+          val windRecords = currentData.filter(_.datasetId == 75)
+          val solarRecords = currentData.filter(_.datasetId == 248)
+          val hydroRecords = currentData.filter(_.datasetId == 191)
+
           println("\n--- Data Analysis ---")
-          println(f"Mean:     ${DataAnalyzer.mean(currentData)}%.3f")
-          println(f"Median:   ${DataAnalyzer.median(currentData)}%.3f")
-          println(s"Mode:     ${DataAnalyzer.mode(currentData)}")
-          println(f"Range:    ${DataAnalyzer.range(currentData)}%.3f")
-          println(f"Midrange: ${DataAnalyzer.midrange(currentData)}%.3f")
+
+          // Helper function to print analytics per plant type
+          def printAnalytics(name: String, records: List[EnergyRecord]): Unit = {
+            if (records.nonEmpty) {
+              println(s"\n[$name Plant - ${records.size} records]")
+              println(f"  Mean:     ${DataAnalyzer.mean(records)}%.3f")
+              println(f"  Median:   ${DataAnalyzer.median(records)}%.3f")
+              println(s"  Mode:     ${DataAnalyzer.mode(records)}")
+              println(f"  Range:    ${DataAnalyzer.range(records)}%.3f")
+              println(f"  Midrange: ${DataAnalyzer.midrange(records)}%.3f")
+            }
+          }
+
+          printAnalytics("Wind", windRecords)
+          printAnalytics("Solar", solarRecords)
+          printAnalytics("Hydro", hydroRecords)
+
+          // --- Generation & Capacity View ---
+          println("\n--- Plant Generation & Capacity View ---")
+          val maxWindMW: Double = 8000.0
+          val maxSolarMW: Double = 1500.0
+          val maxHydroMW: Double = 4000.0
+
+          // Helper function to calculate and print the yields per plant type
+          def printStats(name: String, records: List[EnergyRecord], intervalHrs: Double, maxMW: Double): Unit = {
+            if (records.nonEmpty) {
+              val generatedMWh = records.map(_.value * intervalHrs).sum
+              val totalHours = records.size * intervalHrs
+              val maxPossibleMWh = maxMW * totalHours
+              val utilPct = if (maxPossibleMWh > 0) (generatedMWh / maxPossibleMWh) * 100 else 0.0
+
+              println(s"[$name Plant]")
+              println(f"  Generated Energy:     $generatedMWh%,.2f MWh")
+              println(f"  Max Possible Energy:   $maxPossibleMWh%,.2f MWh (over $totalHours%.2f hours)")
+              println(f"  Capacity Utilization: $utilPct%.2f%%")
+            }
+          }
+
+          printStats("Wind", windRecords, 0.25, maxWindMW)
+          printStats("Solar", solarRecords, 0.25, maxSolarMW)
+          printStats("Hydro", hydroRecords, 0.05, maxHydroMW)
         }
         menuLoop(apiKey, currentData)
 
