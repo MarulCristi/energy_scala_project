@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-at-light-speed.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-at-light-speed.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-at-light-speed-start/scala-at-light-speed.main.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-at-light-speed-start/scala-at-light-speed.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/energy_scala_project/scala-at-light-speed.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/energy_scala_project/scala-at-light-speed.main~1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-at-light-speed-start/scala-at-light-speed.scala-at-light-speed-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-at-light-speed-start/scala-at-light-speed.scala-at-light-speed-build.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-at-light-speed-start/scala-at-light-speed.test.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-at-light-speed-start/scala-at-light-speed.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/energy_scala_project/scala-at-light-speed.test~1.iml" filepath="$PROJECT_DIR$/.idea/modules/energy_scala_project/scala-at-light-speed.test~1.iml" />
     </modules>
   </component>
 </project>

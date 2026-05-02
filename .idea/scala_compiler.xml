@@ -2,6 +2,6 @@
 <project version="4">
   <component name="ScalaCompilerConfiguration">
     <option name="separateProdTestSources" value="true" />
-    <profile name="sbt 1" modules="scala-at-light-speed,scala-at-light-speed.main,scala-at-light-speed.test,youtube-scala" />
+    <profile name="sbt 1" modules="scala-at-light-speed,scala-at-light-speed.main,scala-at-light-speed.main~1,scala-at-light-speed.test,scala-at-light-speed.test~1,youtube-scala" />
   </component>
 </project>
